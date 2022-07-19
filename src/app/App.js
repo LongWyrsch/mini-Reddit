@@ -3,26 +3,43 @@ import './App.css';
 import {
 BrowserRouter as Router,
 Routes,
-Route
+Route,
 // NavLink,
 // useRouteMatch,
+useParams
 } from 'react-router-dom'
-import Firstpage  from '../components/Firstpage';
-import Secondpage from '../components/Secondpage';
-import TwoButtons from '../components/TwoButtons';
+import { Filters } from '../components/Filters';
+import { Posts } from '../features/posts/Posts';
+import {TopBanner} from '../components/TopBanner'
+import {PostDetails} from '../features/posts/PostDetails'
+import { useDispatch, useSelector } from 'react-redux';
+import {getPosts} from '../features/posts/postsSlice'
+import { selectPosts} from '../features/posts/postsSlice'
+import {useEffect} from 'react'
 
 function App() {
+  
+  console.log('Component App rendered')
 
   return (
-    <Router>
-      <TwoButtons/>
-      <Routes>
-        <Route path='/' element={<h1>main page</h1>} />
-        <Route path='/firstpage' element={<Firstpage />} />
-        <Route path='/secondpage' element={<Secondpage />}/>
-      </Routes>
-    </Router>
+    <div className='app'>
+      <Router>
+        <TopBanner />
+        <Filters />
+        <Routes>
+          <Route index element={<Posts/>} />
+          <Route path='/:firstFilter' element={<Posts/>}/>
+          <Route path='/:firstFilter/:permalink' element={<PostDetails/>} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
 export default App;
+
+      // <Routes>
+      //   <Route path='/' element={<h1>main page</h1>} />
+      //   <Route path='/firstpage' element={<Firstpage />} />
+      //   <Route path='/secondpage' element={<Secondpage />}/>
+      // </Routes>

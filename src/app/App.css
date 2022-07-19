@@ -1,38 +1,289 @@
-.App {
+* {
+  box-sizing: border-box;
+  font-family:Arial, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+.arrow {
+  height: 20px;
+}
+
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+/* ################################################ */
+/* ################################################ */
+/* TOPBANNER COMPONENT */
+
+
+.topBanner {
+  display: flex;
+  margin: 10px;
+}
+
+.Reddit-logo {
+  width: 30px;
+}
+
+.form {
+  display: flex;
+  flex-grow: 1;
+  /* border: red solid; */
+  justify-content: center;
+}
+
+.search-box {
+  width: 70%;
+  /* border: red solid; */
+}
+
+.topBanner button {
+  border: none;
+  border-radius: 5px;
+  width: 50px;
+}
+
+/* ################################################ */
+/* ################################################ */
+/* FILTER COMPONENT */
+
+.Filters-component {
+  display: flex;
+}
+
+img.filter {
+  height: 20px;
+}
+
+.filter-button {
+  margin: 5px 10px;
+  padding: 0 0;
+  border: none;
+  opacity: 100%;
+}
+
+.frame {
+  /* border: 1px purple solid; */
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  border: black solid;
+  margin: 0px auto;
+  padding: 2px;
+  /* background-color: #F6F7F8; */
+}
+
+/* ################################################ */
+/* ################################################ */
+/* POST COMPONENT */
+
+.Post-component {
+  max-width: 400px;
+  display: flex;
+  border: solid #C0C0C0 2px;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.post-title {
+  font-size: 1rem;
+}
+
+.left-section {
+  width: 10%;
+}
+
+.right-section{
+  width: 90%;
+}
+
+.ups-number {
+  font-size: 0.7rem;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.left-section > .arrow {
+  display: block;
+  margin: 10px auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.right-section > div{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  /* border: green solid; */
+  margin: 5px;
+  /* font-size: 0.5rem; */
+  /* border: black solid; */
+  margin: 10px auto;
 }
 
-.App-link {
-  color: #61dafb;
+.right-section > div  *{ 
+  /* border: red solid; */
+  margin: 0px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.commentsNumber {
+  display: flex;
+  align-items: center;
 }
+
+.commentsNumber > img {
+  /* width: 20px; */
+  height: 15px;
+  margin: 0 5px;
+  padding: 0px;
+  /* border: green solid; */
+
+}
+
+.right-section p {
+  font-size: 0.6rem;
+}
+
+
+/* ################################################ */
+/* ################################################ */
+/* MEDIA COMPONENT */
+
+.media {
+  max-width: 300px;
+  margin: auto;
+}
+
+.gallery {
+  position: relative;
+  /* border: green solid; */
+}
+
+.left.circle {
+  /* position: absolute; */
+  left: 0;
+  /* top: 45%; */
+}
+
+.right.circle {
+  /* position: absolute; */
+  right: 0px;
+  /* top: 45%; */
+}
+
+.circle {
+  height: 10%;
+  /* width: 20px; */
+  border-radius: 50px;
+  background-color: white;
+  border: rgb(176, 176, 176) solid;
+  position: absolute;
+  top: 45%;
+}
+
+video {
+  max-width: 300px;
+}
+
+/* ################################################ */
+/* ################################################ */
+/* POSTS COMPONENT */
+
+/* .PostDetails-component{
+  border: solid green 1px;
+} */
+
+
+/* ################################################ */
+/* ################################################ */
+/* POSTDETAILS COMPONENT */
+
+.PostDetails-component {
+  /* max-width: 400px; */
+  /* border: solid blue 1px; */
+  /* margin: 20px auto; */
+  /* border-radius: 20px; */
+  /* background-color: black; */
+
+  position: absolute;
+  top: 0px;
+  /* bottom: 0px; */
+  left: 0px;
+  width: 100%;
+  
+  min-height: 100%;
+}
+
+.post {
+
+  max-width: 400px;
+  /* display: flex; */
+  border: solid #C0C0C0 2px;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: white;
+}
+
+.upper-part {
+  /* max-width: 400px; */
+  display: flex;
+  /* border: solid #C0C0C0 2px; */
+  /* margin: 20px auto; */
+  /* padding: 10px; */
+  /* border-radius: 20px; */
+  /* background-color: white; */
+}
+
+
+
+/* .PostDetails-component .non-comments {
+  background-color: red;
+  display: flex;
+  opacity: 50%;
+} */
+
+
+.comments-section {
+  max-width: 400px;
+  margin: auto;
+}
+
+.comments-section > * {
+  overflow: hidden
+}
+
+
+/* ################################################ */
+/* ################################################ */
+/* Comment COMPONENT */
+
+.Comments-component {
+  /* border: solid pink; */
+  /* display: flex; */
+  /* font-size: 0.7rem; */
+  /* margin-bottom: 5px; */
+  /* border: blue solid; */
+  padding: 15px;
+}
+
+.Comments-component * {
+  /* border: solid pink; */
+  /* display: flex; */
+  font-size: 0.7rem;
+}
+
+.comment {
+  /* margin: 0px auto; */
+  width: 100%;
+}
+
+.reply {
+  margin-left: 10%;
+  /* color: purple ; */
+}
+
+
+
