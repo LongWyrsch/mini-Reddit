@@ -31,7 +31,7 @@ export const Post = ({post}) => {
             </div>
             <div className="right-section">
                 <Link to={linkToDetailedPost}>
-                    <h1 className="post-title" onClick={handleOnClick}>{post.title}</h1>
+                    <h1 className="post-title" onClick={handleOnClick} style={theme==='light'?{color:'black'}:{color:'white'}}>{post.title} </h1>
                 </Link>
                 <Media media={post.media} mediaType={post.mediaType}/>
                 <div>
