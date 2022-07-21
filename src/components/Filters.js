@@ -1,35 +1,30 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import { useDispatch, useSelector} from "react-redux"
-import { useNavigate, useRouteMatch, NavLink, useParams, useLocation,useSearchParams } from 'react-router-dom'
+import { useNavigate, NavLink, useLocation,useSearchParams } from 'react-router-dom'
 import { getPosts } from "../features/posts/postsSlice"
 import { selectTheme } from "../features/theme/themeSlice"
-
+import { lightTheme, darkTheme } from "./themes"
 
 export const Filters = () => {
 
     console.log('Component Filters rendered')
 
-    // const navigate = useNavigate()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const theme = useSelector(selectTheme)
     const pathname = useLocation().pathname
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get('t');
 
-    const[topFilter, setTopFilter] = useState('Today')
+
+    useEffect(() => {
+        navigate('/hot/')
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[])
+
     
+    const[topFilter, setTopFilter] = useState('Today')
     const timeframes = ['Now','Today','This Week', 'This Month', 'This Year', 'All Time']
-
-    const darkTheme = {
-        backgroundColor: '#1A1A1A', 
-        color: 'white'
-    }
-
-    const lightTheme = {
-        backgroundColor: '#F6F7F8', 
-        color: 'black'
-    }
 
     const style = ({ isActive }) => ({
         filter: isActive ? 'grayscale(0%)' : 'grayscale(100%)',
@@ -78,20 +73,18 @@ export const Filters = () => {
     }
 
     let secondParameter = pathname.substring(pathname.indexOf('/',1)+1,pathname.length)
-    if (!pathname.includes('search')){
+    if (pathname.includes('search') === false){
         if (secondParameter.includes('?t=') || secondParameter === '' || secondParameter === '/') {
             dispatch(getPosts(getJsonUrl(pathname, searchTerm)))
         }
     }
-
-    
 
     return (
         <div className="Filters-component">
             <div className="frame" style={theme==='light'?lightTheme:darkTheme}>
                 <NavLink to={'/hot/'} style={style} >
                     <div className='filter-button hot'  >
-                        <img src={require('../images/hot2.png')} className='filter' alt="" />
+                        <img src={require('../images/hot2.png')} className='filter' alt=""/>
                     </div>
                 </NavLink>
                 {/* Reddit's API doesn't return the right JSON when filtering the 'hot' section with geo_filter. Instead it returns post for 'global' */}
@@ -115,22 +108,20 @@ export const Filters = () => {
                 <NavLink to={'/top/?t=day'} style={style} >
                     <div className='filter-button top'  >
                         <img src={require('../images/top2.png')} className='filter' alt="" />
+                        {pathname.includes('top') &&
+                            <div className='filter-button select'  >
+                                    <select value={topFilter} onChange={handleChange}>            
+                                        {timeframes.map((timeframe, index) => {
+                                            return (
+                                                <option key={index} value={timeframe}>{timeframe}</option>
+                                            )
+                                        })}
+                                        
+                                    </select>
+                            </div>
+                        }
                     </div>
                 </NavLink>
-                {pathname.includes('top') &&
-                    <div className='filter-button'  >
-                        {/* <form onSubmit={handleSubmit}> */}
-                            <select value={topFilter} onChange={handleChange}>            
-                                {timeframes.map((timeframe, index) => {
-		                            return (
-			                            <option key={index} value={timeframe}>{timeframe}</option>
-		                            )
-                                })}
-                                
-                            </select>
-                        {/* </form> */}
-                    </div>
-                }
                 <NavLink to={'/rising/'} style={style} >
                     <div className='filter-button rising'  >
                         <img src={require('../images/rising2.png')} className='filter' alt="" />

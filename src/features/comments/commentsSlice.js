@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const getComments = createAsyncThunk(
     'comments/getComments',
@@ -28,20 +28,17 @@ const commentsSlice = createSlice({
             state.hasError = false;
         },
         [getComments.fulfilled]: (state, action) => {
-            // console.log("reducer")
             state.comments = []
             action.payload[1].data.children.forEach((comment, index)=>{
                 state.comments.push(
                     {
-                        comment : comment.data.body, //comment on level 1
+                        comment : comment.data.body, 
                         author: comment.data.author,
                         replies : comment.data.replies? comment.data.replies.data.children.map(reply=>({reply: reply.data.body, author: reply.data.author})):''  //comments on level 2   
                     }   
                 )
                 
             })
-            // console.log('reducer')
-            // console.log(current(state).comments)
             state.isLoading = false;
             state.hasError = false;
         },
@@ -55,3 +52,4 @@ const commentsSlice = createSlice({
 export default commentsSlice.reducer
 export const selectComments = (state) => state.comments.comments
 export const {clearComments} = commentsSlice.actions
+export const isLoadingComments = (state) => state.comments.isLoading

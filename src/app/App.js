@@ -1,21 +1,14 @@
 import './App.css';
-// import ROUTES from './routes';
 import {
 BrowserRouter as Router,
 Routes,
-Route,
-// NavLink,
-// useRouteMatch,
-useParams
+Route
 } from 'react-router-dom'
 import { Filters } from '../components/Filters';
 import { Posts } from '../features/posts/Posts';
 import {TopBanner} from '../components/TopBanner'
 import {PostDetails} from '../features/posts/PostDetails'
-import { useDispatch, useSelector } from 'react-redux';
-import {getPosts} from '../features/posts/postsSlice'
-import { selectPosts} from '../features/posts/postsSlice'
-import {useEffect} from 'react'
+import { NoMatch } from '../components/NoMatch'
 
 function App() {
   
@@ -28,8 +21,13 @@ function App() {
         <Filters />
         <Routes>
           <Route index element={<Posts/>} />
-          <Route path='/:firstFilter' element={<Posts/>}/>
-          <Route path='/:firstFilter/:permalink' element={<PostDetails/>} />
+          <Route path='/hot' element={<Posts/>}/>
+          <Route path='/new' element={<Posts/>}/>
+          <Route path='/top' element={<Posts/>}/>
+          <Route path='/rising' element={<Posts/>}/>
+          <Route path='/search' element={<Posts/>}/>
+          <Route path='/:firstFilter/*' element={<PostDetails/>} />
+          <Route path='*' element={<NoMatch/>} />
         </Routes>
       </Router>
     </div>
@@ -37,9 +35,3 @@ function App() {
 }
 
 export default App;
-
-      // <Routes>
-      //   <Route path='/' element={<h1>main page</h1>} />
-      //   <Route path='/firstpage' element={<Firstpage />} />
-      //   <Route path='/secondpage' element={<Secondpage />}/>
-      // </Routes>

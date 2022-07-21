@@ -34,7 +34,8 @@ const postsSlice = createSlice({
                 let mediaType = ''
                 if (post.data.media_metadata) {
                     for (const key in post.data.media_metadata) {
-                        media.unshift((post.data.media_metadata[key].s.u).replaceAll('amp;',''))
+                        // console.log((post.data.media_metadata[key].s.u))
+                        media.unshift((post.data.media_metadata[key].s.u)?.replaceAll('amp;',''))
                     }
                     mediaType = 'gallery'
                 } else if (post.data.is_video === true) {
@@ -84,36 +85,10 @@ const postsSlice = createSlice({
                     permalink: post.data.permalink,
                     media: media,
                     mediaType: mediaType,
-                    id: post.data.id
+                    id: post.data.id,
+                    selftext: post.data.selftext
                 }
             })
-
-            // state.posts = [
-            //     {
-            //         title: 'post.data.title', 
-            //         ups: 'ups',
-            //         author: 'post.data.author',
-            //         timeElapsed: 'timeElapsed',
-            //         num_comments: 'numComments',
-            //         permalink: 'post.data.permalink',
-            //         media: 'media',
-            //         mediaType: 'mediaType',
-            //         id: 'post.data.id 1'
-            //     },
-            //     {
-            //         title: 'post.data.title', 
-            //         ups: 'ups',
-            //         author: 'post.data.author',
-            //         timeElapsed: 'timeElapsed',
-            //         num_comments: 'numComments',
-            //         permalink: 'post.data.permalink',
-            //         media: 'media',
-            //         mediaType: 'mediaType',
-            //         id: 'post.data.id 2'
-            //     }
-            // ]
-
-
             state.isLoading = false;
             state.hasError = false;                
         },
@@ -126,5 +101,6 @@ const postsSlice = createSlice({
 
 export const selectPosts = (state) => state.posts.posts
 export const selectChosenPost = (state) => state.posts.chosenPost
+export const isLoadingPosts = (state) => state.posts.isLoading
 export const {choosePost} = postsSlice.actions
 export default postsSlice.reducer

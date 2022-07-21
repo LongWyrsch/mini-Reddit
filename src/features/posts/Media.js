@@ -31,7 +31,6 @@ export const Media = ({media, mediaType}) => {
             </div>
         ) 
     } else if (mediaType === 'gif' || mediaType === 'jpg' || mediaType === 'png') {
-        // console.log('media.slice(-4) === .gif || .jpg')
         return (
             <img src={media[0]} className="media" alt=""/>
         )

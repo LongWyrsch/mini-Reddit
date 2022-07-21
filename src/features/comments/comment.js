@@ -1,13 +1,7 @@
-// import { useSelector } from "react-redux"
-// import { selectComments } from "./commentsSlice"
-
-
 export const Comment = ({comment}) => {
 
-    // const comments = useSelector(selectComments)
-
     return (
-        <div className="Comments-component">
+        <div className="Comment-component">
             <div className="comment">
                 <strong>{comment.author}</strong>
                 <div>{comment.comment}</div>

@@ -8,6 +8,9 @@ import { getPosts } from "../features/posts/postsSlice"
 
 export const TopBanner = () => {
 
+    console.log('Component TopBanner rendered')
+
+
     const [searchTerm, setSearchTerm] = useState('')
 
     const theme = useSelector(selectTheme)
@@ -42,17 +45,13 @@ export const TopBanner = () => {
     const darkSearBar = {
         backgroundColor: '#424242', 
         color: 'white',
-        // border: 'solid #424242 2px'
     }
 
     const lightSearBar = {
         backgroundColor: 'white', 
         color: 'black',
-        // border: 'solid #C0C0C0 2px'
     }
 
-
-    // back{theme==='light'?{}:{}}
     return (
         <div className="topBanner">
             <img className="Reddit-logo" src={require("../images/redditLogo.png")} alt=''/>
@@ -68,4 +67,3 @@ export const TopBanner = () => {
     )
 }
 
-// style={theme==='light'?darkButton:lightButton}
