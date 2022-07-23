@@ -7,7 +7,7 @@ import { lightTheme, darkTheme } from "./themes"
 
 export const Filters = () => {
 
-    console.log('Component Filters rendered')
+    // console.log('Component Filters starting to render')
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -18,7 +18,7 @@ export const Filters = () => {
 
 
     useEffect(() => {
-        navigate('/hot/')
+        if (pathname === '/') {navigate('/hot/')}
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
@@ -63,6 +63,7 @@ export const Filters = () => {
 
     function getJsonUrl (firstFilter, secondFilter) {
         firstFilter = firstFilter.replace('/','')
+        // console.log('getJsonUrl function called with: ' + firstFilter + ' and ' + secondFilter)
         if (firstFilter.includes('new') || firstFilter.includes('rising')) {
             return `https://www.reddit.com/${firstFilter}.json`
         } else if (firstFilter.includes('top')) {
@@ -72,12 +73,16 @@ export const Filters = () => {
         }
     }
 
-    let secondParameter = pathname.substring(pathname.indexOf('/',1)+1,pathname.length)
-    if (pathname.includes('search') === false){
-        if (secondParameter.includes('?t=') || secondParameter === '' || secondParameter === '/') {
-            dispatch(getPosts(getJsonUrl(pathname, searchTerm)))
+    //The dispactch is wrapped in this useEffect to avoid Posts rendering at the same time as this component. UseEffect delays the dispatch until this Filter component is done rendering.
+    useEffect(() => {
+        //Sends action to getPosts whenever url matches HOT, NEW or RISING, with no second parameter.
+        let secondParameter = pathname.substring(pathname.indexOf('/',1)+1,pathname.length)
+        if (pathname.includes('search') === false){
+            if (secondParameter.includes('?t=') || secondParameter === '' || secondParameter === '/') {
+                dispatch(getPosts(getJsonUrl(pathname, searchTerm)))
+            }
         }
-    }
+    })
 
     return (
         <div className="Filters-component">
@@ -130,5 +135,7 @@ export const Filters = () => {
             </div>
         </div>
     )
+
+    
 }
 

@@ -76,10 +76,10 @@ ul {
     max-width: 90px;
   }
 
-  .filter-button .select > select {
-    /* width: 80%; */
-    /* font-size: 1rem; */
-  }
+  /* .filter-button .select > select {
+    width: 80%;
+    font-size: 1rem;
+  } */
 
   /* .filter-button {
     margin: 0px 10px;
@@ -261,7 +261,7 @@ a {
 
 .gallery {
   position: relative;
-  border: green solid;
+  /* border: green solid; */
   max-width: 100%;
 }
 

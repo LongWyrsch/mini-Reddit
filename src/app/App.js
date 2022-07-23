@@ -12,7 +12,7 @@ import { NoMatch } from '../components/NoMatch'
 
 function App() {
   
-  console.log('Component App rendered')
+  // console.log('Component App rendered')
 
   return (
     <div className='app'>

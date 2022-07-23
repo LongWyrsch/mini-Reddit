@@ -25,7 +25,7 @@ const postsSlice = createSlice({
     extraReducers: {
         [getPosts.pending]: (state, action) => {
             state.isLoading = true;
-            state.hasError = false;               
+            state.hasError = false;             
         },
         [getPosts.fulfilled]: (state, action) => {
             state.posts = action.payload.data.children.map(post=>{
@@ -34,7 +34,6 @@ const postsSlice = createSlice({
                 let mediaType = ''
                 if (post.data.media_metadata) {
                     for (const key in post.data.media_metadata) {
-                        // console.log((post.data.media_metadata[key].s.u))
                         media.unshift((post.data.media_metadata[key].s.u)?.replaceAll('amp;',''))
                     }
                     mediaType = 'gallery'
@@ -90,7 +89,7 @@ const postsSlice = createSlice({
                 }
             })
             state.isLoading = false;
-            state.hasError = false;                
+            state.hasError = false;  
         },
         [getPosts.rejected]: (state, action) => {
             state.isLoading = false;

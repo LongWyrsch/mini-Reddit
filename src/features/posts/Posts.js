@@ -7,11 +7,14 @@ import { Loading } from '../../components/Loading'
 
 export const Posts = () => {
 
-    console.log('Component Posts rendered')
+    // console.log('Component Posts starting to render')
 
     const theme = useSelector(selectTheme)
-    const postsAreLoaing = useSelector(isLoadingPosts)
+    // console.log('posts updated')
     const posts = useSelector(selectPosts) 
+    // console.log('loading state updated')
+    const postsAreLoaing = useSelector(isLoadingPosts)
+
 
     return (
         <div className='Posts-component'>

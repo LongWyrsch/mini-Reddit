@@ -8,7 +8,7 @@ import { getPosts } from "../features/posts/postsSlice"
 
 export const TopBanner = () => {
 
-    console.log('Component TopBanner rendered')
+    // console.log('Component TopBanner starting to render')
 
 
     const [searchTerm, setSearchTerm] = useState('')
@@ -16,15 +16,15 @@ export const TopBanner = () => {
     const theme = useSelector(selectTheme)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    
     function handleOnClickTheme () {
         dispatch(toggleTheme())
     } 
-
+    
     function handleOnChange (e) {
         setSearchTerm(e.target.value)
     }
-
+    
     function handleSubmit (event) {
         event.preventDefault();
         const query = searchTerm.replaceAll(' ','%20')
@@ -52,6 +52,8 @@ export const TopBanner = () => {
         color: 'black',
     }
 
+
+
     return (
         <div className="topBanner">
             <img className="Reddit-logo" src={require("../images/redditLogo.png")} alt=''/>
@@ -65,5 +67,6 @@ export const TopBanner = () => {
             </Helmet>
         </div>
     )
+
 }
 
