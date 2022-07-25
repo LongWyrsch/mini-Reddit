@@ -69,7 +69,7 @@ export const Filters = () => {
         } else if (firstFilter.includes('top')) {
             return `https://www.reddit.com/top.json?t=${secondFilter}`
         } else {              // If firstFilter === hot, or no match.
-            return 'https://www.reddit.com/r/Popular.json?geo_filter=GLOBAL'
+            return 'https://www.reddit.com/r/popular.json?geo_filter=GLOBAL'
         }
     }
 
@@ -87,9 +87,9 @@ export const Filters = () => {
     return (
         <div className="Filters-component">
             <div className="frame" style={theme==='light'?lightTheme:darkTheme}>
-                <NavLink to={'/hot/'} style={style} >
+                <NavLink to={'/hot/'} style={style} data-testid='hotLink'>
                     <div className='filter-button hot'  >
-                        <img src={require('../images/hot2.png')} className='filter' alt=""/>
+                        <img src={require('../images/hot2.png')} className='filter' alt="hotFilter"/>
                     </div>
                 </NavLink>
                 {/* Reddit's API doesn't return the right JSON when filtering the 'hot' section with geo_filter. Instead it returns post for 'global' */}
@@ -105,14 +105,14 @@ export const Filters = () => {
                             </select>
                     </div>
                 } */}
-                <NavLink to={'/new/'} style={style} >
+                <NavLink to={'/new/'} style={style} data-testid='newLink'>
                     <div className='filter-button new'  >
-                        <img src={require('../images/new2.png')} className='filter' alt="" />
+                        <img src={require('../images/new2.png')} className='filter' alt="newFilter" />
                     </div>
                 </NavLink>
-                <NavLink to={'/top/?t=day'} style={style} >
+                <NavLink to={'/top/?t=day'} style={style} data-testid='topLink'>
                     <div className='filter-button top'  >
-                        <img src={require('../images/top2.png')} className='filter' alt="" />
+                        <img src={require('../images/top2.png')} className='filter' alt="topFilter" />
                         {pathname.includes('top') &&
                             <div className='filter-button select'  >
                                     <select value={topFilter} onChange={handleChange}>            
@@ -127,9 +127,9 @@ export const Filters = () => {
                         }
                     </div>
                 </NavLink>
-                <NavLink to={'/rising/'} style={style} >
+                <NavLink to={'/rising/'} style={style} data-testid='risingLink'>
                     <div className='filter-button rising'  >
-                        <img src={require('../images/rising2.png')} className='filter' alt="" />
+                        <img src={require('../images/rising2.png')} className='filter' alt="risingFilter" />
                     </div>
                 </NavLink>
             </div>

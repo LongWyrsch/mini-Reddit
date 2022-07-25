@@ -6,7 +6,11 @@ import { Link, useLocation } from "react-router-dom"
 import { choosePost } from './postsSlice'
 import { getComments } from '../comments/commentsSlice'
 import { lightTheme, darkTheme } from "../../components/themes"
-export const Post = ({post}) => {
+
+
+export const Post = ({post, num}) => {
+
+    // console.log('Component Post starting to render')
 
     const dispatch = useDispatch()
     const theme = useSelector(selectTheme)
@@ -23,7 +27,7 @@ export const Post = ({post}) => {
 
 
     return (
-        <div className="Post-component" style={theme==='light'?lightTheme:darkTheme}>
+        <div className="Post-component" style={theme==='light'?lightTheme:darkTheme} data-testid={`post${num}`}>
             <div className="left-section">
                 <img src={require('../../images/upArrow.png')} className="up arrow" alt=""/>
                 <p className="ups-number">{post.ups}K</p>
@@ -31,7 +35,7 @@ export const Post = ({post}) => {
             </div>
             <div className="right-section">
                 <Link to={linkToDetailedPost}>
-                    <h1 className="post-title" onClick={handleOnClick} style={theme==='light'?{color:'black'}:{color:'white'}}>{post.title} </h1>
+                    <h1 className="post-title" onClick={handleOnClick} style={theme==='light'?{color:'black'}:{color:'white'}} data-testid={`postTitle-${num}`}>{post.title} </h1>
                 </Link>
                 <Media media={post.media} mediaType={post.mediaType}/>
                 <div>

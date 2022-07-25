@@ -11,7 +11,7 @@ import { Loading } from "../../components/Loading"
 
  export const PostDetails = () => {
 
-    console.log('Component Post')
+    // console.log('Component Post')
 
     const commentsAreLoading = useSelector(isLoadingComments)
     const theme = useSelector(selectTheme)
@@ -50,8 +50,8 @@ import { Loading } from "../../components/Loading"
                     </div>
                 </div >
                 <hr/>
-                <div className="comments-section" style={theme==='light'?{...lightTheme, border: 'none'}:{...darkTheme, border: 'none'}}>
-                    {comments.map((comment, index)=><Comment comment={comment} key={index}/>)} 
+                <div className="comments-section" style={theme==='light'?{...lightTheme, border: 'none'}:{...darkTheme, border: 'none'}} data-testid='test1'>
+                    {comments.map((comment, index)=><Comment comment={comment} key={index} commentIndex={index}/>)} 
                 </div>
             </div>
         </div>

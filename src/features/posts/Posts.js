@@ -17,12 +17,12 @@ export const Posts = () => {
 
 
     return (
-        <div className='Posts-component'>
+        <div className='Posts-component' >
             {postsAreLoaing===true && <Loading theme={theme}/>}
             <ul>
-                {posts.map((post)=>(
+                {posts.map((post, index)=>(
                     <li key={post.id}>
-                            <Post post={post} />
+                            <Post post={post} num={index}/>
                     </li>
                 ))}
             </ul>

@@ -5,7 +5,9 @@ export const getPosts = createAsyncThunk(
     async (url, thunkAPI) => {
         const response = await fetch(url)
         const json = await response.json()
+        // console.log('title: ' + json.data.children[0].data.title)
         return json
+
     }
 )
 

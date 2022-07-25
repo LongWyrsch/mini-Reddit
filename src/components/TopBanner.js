@@ -5,6 +5,7 @@ import { toggleTheme } from "../features/theme/themeSlice"
 import {Helmet} from 'react-helmet'
 import { useNavigate } from "react-router-dom"
 import { getPosts } from "../features/posts/postsSlice"
+import { lightTheme, darkTheme } from "./themes"
 
 export const TopBanner = () => {
 
@@ -32,15 +33,15 @@ export const TopBanner = () => {
         dispatch(getPosts(`https://www.reddit.com/search.json?q=${query}`))
     } 
 
-    const darkButton = {
-        backgroundColor: 'black', 
-        color: 'white'
-    }
+    // const darkButton = {
+    //     backgroundColor: 'black', 
+    //     color: 'white'
+    // }
 
-    const lightButton = {
-        backgroundColor: 'white', 
-        color: 'black'
-    }
+    // const lightButton = {
+    //     backgroundColor: 'white', 
+    //     color: 'black'
+    // }
 
     const darkSearBar = {
         backgroundColor: '#424242', 
@@ -61,7 +62,7 @@ export const TopBanner = () => {
             <input type='text' placeholder='search' className="search-box" onChange={handleOnChange} style={theme==='light'?lightSearBar:darkSearBar}/>
                 <button className="search-button">Search</button>
             </form>
-            <button onClick={handleOnClickTheme} className="theme-button" style={theme==='light'?darkButton:lightButton}>{theme==='light'?'dark':'light'}</button>
+            <button onClick={handleOnClickTheme} className="theme-button" style={theme==='light'?darkTheme:lightTheme}>{theme==='light'?'dark':'light'}</button>
             <Helmet>
                 <style>{`body { background-color: ${theme==='light'?'#DAE0E6':'#030303'}; }`}</style>
             </Helmet>
