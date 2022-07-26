@@ -1,0 +1,38 @@
+
+[
+    {
+        title:, 
+        likes:,
+        dislikes:,
+        author:,
+        time:,
+        numComments:,
+        media:
+    },
+    {
+        ...
+    },
+    ...
+]
+
+
+When clicking on a post, the data is fetched
+
+Post's data is taken from the state. Comments are fetched
+
+
+ comments:
+[
+            {
+                comment:,
+                replies: [
+                    'reply1',
+                    'reply2',
+                    ...
+                ]
+            },
+            {
+
+            },
+            ...
+        ]

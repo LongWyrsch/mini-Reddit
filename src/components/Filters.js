@@ -102,23 +102,25 @@ export const Filters = () => {
                         <img src={require('../images/new2.png')} className='filter' alt="newFilter" />
                     </div>
                 </NavLink>
-                <NavLink to={'/top/?t=day'} style={style} data-testid='topLink'>
-                    <div className='filter-button top'  >
-                        <img src={require('../images/top2.png')} className='filter' alt="topFilter" />
-                        {pathname.includes('top') &&
-                            <div className='filter-button select'  >
-                                    <select value={topFilter} onChange={handleChange}>            
-                                        {timeframes.map((timeframe, index) => {
-                                            return (
-                                                <option key={index} value={timeframe}>{timeframe}</option>
-                                            )
-                                        })}
-                                        
-                                    </select>
-                            </div>
-                        }
-                    </div>
-                </NavLink>
+                <div className='filter-button top'>
+                    <NavLink to={'/top/?t=day'} style={style} data-testid='topLink'>
+                        <div   >
+                            <img src={require('../images/top2.png')} className='filter' alt="topFilter" />
+                        </div>
+                    </NavLink>
+                            {pathname.includes('top') &&
+                                <div className='filter-button select'  >
+                                        <select value={topFilter} onChange={handleChange}>            
+                                            {timeframes.map((timeframe, index) => {
+                                                return (
+                                                    <option key={index} value={timeframe}>{timeframe}</option>
+                                                )
+                                            })}
+                                            
+                                        </select>
+                                </div>
+                            }
+                </div>
                 <NavLink to={'/rising/'} style={style} data-testid='risingLink'>
                     <div className='filter-button rising'  >
                         <img src={require('../images/rising2.png')} className='filter' alt="risingFilter" />

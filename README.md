@@ -1,70 +1,86 @@
-# Getting Started with Create React App
+# Mini-Reddit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This app was create as the front-end section's final project of [Codecademy](https://www.codecademy.com/learn)'s *Full-Stack Engineering* course.
 
-## Available Scripts
+This app is a mini Reddit viewer. It doesn't allow the user to comment or vote. The user can filter posts usring predefined categories, or by searching for a term in the search bar. By clicking on a post, the viewer can see its comments.
 
-In the project directory, you can run:
+<img src='./ProjectManagement/mini-Reddit.png' width="50%" height="50%">
 
-### `npm start`
+# Project Requirements:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [x] Build the application using React and Redux
+- [x] Version control your application with Git and host the repository on GitHub
+- [x] Use a project management tool (GitHub Projects, Trello, etc.) to plan your work
+- [ ] Write a README (using Markdown) that documents your project including:
+  - [x] Wireframes
+  - [x] Technologies used
+  - [x] Features
+  - [ ] Future work
+- [x] Write unit tests for your components using Jest and Enzyme
+- [x] Write end-to-end tests for your application
+- [x] Users can use the application on any device (desktop to mobile)
+- [x] Users can use the application on any modern browser
+- [x] Users can access your application at a URL
+- [x] Users see an initial view of the data when first visiting the app
+- [x] Users can search the data using terms
+- [x] Users can filter the data based on categories that are predefined
+- [x] Users are shown a detailed view (modal or new page/route) when they select an item
+- [x] Users are delighted with a cohesive design system
+- [ ] Users are delighted with animations and transitions
+- [ ] Users are able to leave an error state
+- [ ] Get 90+ scores on Lighthouse
+    We understand you cannot control how media assets like videos and images are sent to the client. It is okay to have a score below 90 for Performance if they are related to the media from Reddit.
+- [ ] OPTIONAL: Get a custom domain name and use it for your application
+- [x] OPTIONAL: Set up a CI/CD workflow to automatically deploy your application when the master branch in the repository changes
+- [ ] OPTIONAL: Make your application a progressive web app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Prerequisites:
 
-### `npm test`
+- [x] HTML
+- [x] CSS
+- [x] JavaScript
+- [x] React
+- [x] Redux
+- [x] Jest, Enzyme, and Selenium
+- [x] Git and GitHub
+- [x] Command line and file navigation
+- [x] Wireframing
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# WireFraming
 
-### `npm run build`
+Wireframes were created using [diagrams.net](https://www.diagrams.net/).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<img src='./ProjectManagement/wireframe.png' width="50%" height="50%">
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Code Coverage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<img src='./ProjectManagement/codeCoverage.png' width="50%" height="50%">
 
-### `npm run eject`
+# Lighthouse Page Quality Score
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<img src="./ProjectManagement/lighthouseScore.png"  width="50%" height="50%">
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Lighthouse](https://web.dev/measure/) gave a 72% score for the page's performance. The 90% score objective was not achieved.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To score higher on the performance metric, the app could display fewer posts. At the moment, [Reddit](https://www.reddit.com/)'s api returns data for 25 posts. Instead of displaying all of them, the app could display only half.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Read the full report [here](./ProjectManagement/Lighthouse%20Report%20Viewer.pdf)
 
-## Learn More
+# Project Management Tool
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+A basic kanban using Github Projects was used to managed the tasks. The project was broken down into the following steps:
+- Create a WBS and schedule tasks
+- Create wireframes
+  - Choose colors
+  - Determine components
+- Map Reddit's API JSON response
+- Create a react folder
+  - Add necessary libraries
+- Setup git/GitHub for verison tracking
+- Setup Netlify for continuous deployment
+- Write app logic
+- Write CSS and make app responsive
+- Write tests
+  - Mock API calls
+  - Watch code coverage
+- Write comments to the code
