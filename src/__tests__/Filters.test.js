@@ -1,9 +1,10 @@
-import { render, screen } from "@testing-library/react"
-import userEvent from "@testing-library/user-event"
 import { Provider } from "react-redux"
 import { BrowserRouter as Router } from "react-router-dom"
 import store from "../app/store"
 import { Filters } from '../components/Filters'
+
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
 
 describe('Filter functionality', () => {
 
@@ -16,6 +17,7 @@ describe('Filter functionality', () => {
         </Provider>    
         )
 
+        //Check all filter images are loaded.
         const hotFilter = screen.getByAltText('hotFilter')
         const newFilter = screen.getByAltText('newFilter')
         const topFilter = screen.getByAltText('topFilter')
@@ -26,6 +28,7 @@ describe('Filter functionality', () => {
         expect(topFilter).toBeInTheDocument()
         expect(risingFilter).toBeInTheDocument()
         
+        //Check that clicking each filter turns it blue while other remain grey.
         const hotLink = screen.getByTestId('hotLink')
         const newLink = screen.getByTestId('newLink')
         const topLink = screen.getByTestId('topLink')
@@ -64,7 +67,8 @@ describe('Filter functionality', () => {
             </Router>
         </Provider>    
         )
-
+        
+        //Click on "Top" filter to bring timeframe options.
         const topFilter = screen.getByAltText('topFilter')
         userEvent.click(topFilter)
         
@@ -76,9 +80,17 @@ describe('Filter functionality', () => {
         //test that there are 6 choices
         expect(screen.getAllByRole('option').length).toBe(6)
 
-        //test that user can select different option
+        //test that user can select each option
+        userEvent.selectOptions(timeframeSelector, 'Now')
+        expect(timeframeSelector).toHaveValue('Now')
+        userEvent.selectOptions(timeframeSelector, 'This Week')
+        expect(timeframeSelector).toHaveValue('This Week')
         userEvent.selectOptions(timeframeSelector, 'This Month')
         expect(timeframeSelector).toHaveValue('This Month')
+        userEvent.selectOptions(timeframeSelector, 'This Year')
+        expect(timeframeSelector).toHaveValue('This Year')
+        userEvent.selectOptions(timeframeSelector, 'All Time')
+        expect(timeframeSelector).toHaveValue('All Time')
 
     })
 

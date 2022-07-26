@@ -6,7 +6,6 @@
 
 .arrow {
   max-height: 20px;
-  /* height: 5vw; */
 }
 
 ul {
@@ -33,18 +32,15 @@ ul {
 .form {
   display: flex;
   flex-grow: 1;
-  /* border: red solid; */
   justify-content: center;
 }
 
 .search-box {
   width: 70px;
-  /* min-width: 10px; */
   flex-grow: 1;
   max-width: 200px;
   margin-right: 10px;
   border-radius: 5px;
-  /* border: red solid; */
 }
 
 .search-button {
@@ -76,14 +72,6 @@ ul {
     max-width: 90px;
   }
 
-  /* .filter-button .select > select {
-    width: 80%;
-    font-size: 1rem;
-  } */
-
-  /* .filter-button {
-    margin: 0px 10px;
-  } */
 }
 
 @media only screen and (min-width: 501px) {
@@ -93,9 +81,6 @@ ul {
   .filter-button.select {
     margin-left: 10px;
   }
-  /* .filter-button {
-    margin: 0px 10px;
-  } */
 
 }
 
@@ -105,7 +90,6 @@ img.filter {
 }
 
 .filter-button {
-  /* margin: 0px 10px; */
   padding: 0 0;
   border: none;
   opacity: 100%;
@@ -116,7 +100,6 @@ img.filter {
 
 
 .frame {
-  /* border: 1px purple solid; */
   width: 80vw;
   display: flex;
   justify-content: space-around;
@@ -124,7 +107,6 @@ img.filter {
   border: black solid;
   margin: 0px auto;
   padding: 10px;
-  /* background-color: #F6F7F8; */
 }
 
 a {
@@ -137,14 +119,6 @@ a {
 /* POSTS COMPONENT */
 
 
-
-/* .selftext { */
-  /* color: red; */
-  /* font-size: 0.5rem; */
-  /* white-space: normal; */
-  /* overflow: hidden; */
-  /* text-overflow: ellipsis; */
-/* } */
 
 /* ################################################ */
 /* ################################################ */
@@ -186,22 +160,15 @@ a {
 
 @media only screen and (max-width: 400px) {
   .right-section > div{
-    /* display: flex; */
-    /* justify-content: space-around; */
     align-items: center;
-    /* border: green solid; */
     margin: 5px;
-    /* font-size: 0.5rem; */
-    /* border: black solid; */
     margin: 10px auto;
   }
 
   .commentsNumber > img {
-    /* width: 20px; */
     height: 15px;
     margin-right: 5px !important; 
     padding: 0px;
-    /* border: green solid; */
   }
 }
 @media only screen and (min-width: 401px) {
@@ -209,24 +176,18 @@ a {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* border: green solid; */
     margin: 5px;
-    /* font-size: 0.5rem; */
-    /* border: black solid; */
     margin: 10px auto;
   }
 
   .commentsNumber > img {
-    /* width: 20px; */
     height: 15px;
     margin-right: 5px !important;
     padding: 0px;
-    /* border: green solid; */
   }
 }
 
 .right-section > div  * { 
-  /* border: red solid; */
   margin: 0px;
 
 }
@@ -241,7 +202,6 @@ a {
 .commentsNumber {
   display: flex;
   align-items: center;
-  /* margin-left: 1px; */
 }
 
 
@@ -256,25 +216,19 @@ a {
 .media {
   max-width: 90%;
   margin: 0px 0px;
-  /* border: red solid; */
 }
 
 .gallery {
   position: relative;
-  /* border: green solid; */
   max-width: 100%;
 }
 
 .left.circle {
-  /* position: absolute; */
   left: 0;
-  /* top: 45%; */
 }
 
 .right.circle {
-  /* position: absolute; */
   right: 0px;
-  /* top: 45%; */
 }
 
 .circle {
@@ -301,15 +255,9 @@ video {
 /* POSTDETAILS COMPONENT */
 
 .PostDetails-component {
-  /* max-width: 400px; */
-  /* border: solid blue 1px; */
-  /* margin: 20px auto; */
-  /* border-radius: 20px; */
-  /* background-color: black; */
 
   position: absolute;
   top: 0px;
-  /* bottom: 0px; */
   left: 0px;
   width: 100%;
   
@@ -319,7 +267,6 @@ video {
 .post {
 
   max-width: 400px;
-  /* display: flex; */
   border: solid #C0C0C0 2px;
   margin: 20px auto;
   padding: 10px;
@@ -328,28 +275,12 @@ video {
 }
 
 .upper-part {
-  /* max-width: 400px; */
   display: flex;
-  /* border: solid #C0C0C0 2px; */
-  /* margin: 20px auto; */
-  /* padding: 10px; */
-  /* border-radius: 20px; */
-  /* background-color: white; */
 }
-
-
-
-/* .PostDetails-component .non-comments {
-  background-color: red;
-  display: flex;
-  opacity: 50%;
-} */
-
 
 .comments-section {
   max-width: 400px;
   margin: auto;
-  /* border: none; */
   
 }
 
@@ -364,29 +295,20 @@ video {
 /* COMMENT COMPONENT */
 
 .Comment-component {
-  /* border: solid pink; */
-  /* display: flex; */
   font-size: 0.7rem;
-  /* margin-bottom: 5px; */
-  /* border: blue solid; */
   padding: 15px;
-  /* border: none; */
 }
 
 .Comments-component * {
-  /* border: solid pink; */
-  /* display: flex; */
   font-size: 0.7rem;
 }
 
 .comment {
-  /* margin: 0px auto; */
   width: 100%;
 }
 
 .reply {
   margin-left: 10%;
-  /* color: purple ; */
 }
 
 
@@ -421,17 +343,8 @@ video {
 }
 
 .loading-box {
-  /* width: 50%; */
-  /* height: 300px; */
-  /* background-color: yellow; */
   opacity: 0.5;
-  /* margin: 0 auto; */
-  /* position: relative; */
-  /* width: 100%; */
-  /* top: 0px; */
   height: 100vh;
-  /* left: 25%; */
-  /* padding-top: 0%; */
   border: none;
   
 }
@@ -441,18 +354,11 @@ video {
   position: relative;
   width: 25%;
   min-width: 150px;
-  /* height: 100px; */
-  /* background-color: pink; */
   margin: 0 auto;
-  /* display: flex; */
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-
-  /* font-size: clamp(1.5rem; */
-  /* position: absolute; */
   top: 10%;
-  /* left: 25%; */
   padding: 20px;
 }
 
@@ -466,6 +372,5 @@ video {
 .loading-box > div > strong {
   display: block;
   margin: 30px auto 0px;
-  /* border: red solid; */
   text-align: center;
 }

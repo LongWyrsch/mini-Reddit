@@ -1,11 +1,11 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 
+//Middleware fetches posts JSON before feeding them to the slice
 export const getPosts = createAsyncThunk(
     'posts/getPosts',
     async (url, thunkAPI) => {
         const response = await fetch(url)
         const json = await response.json()
-        // console.log('title: ' + json.data.children[0].data.title)
         return json
 
     }
@@ -19,6 +19,7 @@ const postsSlice = createSlice({
         isLoading: false,
         hasError: false
     },
+    //When clicking on a post to view its comments, that post object is saved in the store as chosenPost, so that postDetails can access it.
     reducers: {
         choosePost: (state, action) => {
             state.chosenPost = action.payload
@@ -30,6 +31,8 @@ const postsSlice = createSlice({
             state.hasError = false;             
         },
         [getPosts.fulfilled]: (state, action) => {
+            state.isLoading = false;
+            state.hasError = false;  
             state.posts = action.payload.data.children.map(post=>{
                 
                 let media = [];
@@ -56,6 +59,7 @@ const postsSlice = createSlice({
                     mediaType = 'media not found'
                 }
 
+                //Convert the 'created' timestamp data to something readable.
                 let timeElapsed = '' 
                 if ((Date.now() - post.data.created*1000)/1000/60/60 < 23) {
                     timeElapsed = Math.ceil((Date.now() - post.data.created*1000)/1000/60/60) + ' hours ago'
@@ -63,6 +67,7 @@ const postsSlice = createSlice({
                     timeElapsed = Math.ceil((Date.now() - post.data.created*1000)/1000/60/60/24) + ' days ago'
                 }
 
+                //Show 'thousands' of ups if greater than 1K.
                 let ups = 0
                 if (post.data.ups < 1000) {
                     ups = post.data.ups
@@ -70,6 +75,7 @@ const postsSlice = createSlice({
                     ups = Math.round((post.data.ups)/100)/10
                 }
 
+                //Show 'thousands' of comments if greater than 1K.
                 let numComments = 0
                 if (post.data.num_comments < 1000) {
                     numComments = post.data.num_comments
@@ -90,8 +96,6 @@ const postsSlice = createSlice({
                     selftext: post.data.selftext
                 }
             })
-            state.isLoading = false;
-            state.hasError = false;  
         },
         [getPosts.rejected]: (state, action) => {
             state.isLoading = false;

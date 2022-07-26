@@ -15,16 +15,17 @@ export const Post = ({post, num}) => {
     const dispatch = useDispatch()
     const theme = useSelector(selectTheme)
 
+    //load comments for that post
     function handleOnClick () {
         dispatch(getComments(post.permalink))
         dispatch(choosePost(post))
     }
 
+    //Create app url for the selected post when shown in postDetails. Ex: http://localhost:3001/hot/better_call_saul_s06e10_nippy_postepisode/
     const pathname = useLocation().pathname
     let prefix = ''
     pathname === '/'? prefix = 'hot/' : prefix = ''
     const linkToDetailedPost = prefix + post.permalink.substring(post.permalink.substring(0,post.permalink.length-1).lastIndexOf('/')+1, post.permalink.length)
-
 
     return (
         <div className="Post-component" style={theme==='light'?lightTheme:darkTheme} data-testid={`post${num}`}>

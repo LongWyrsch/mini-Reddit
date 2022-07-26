@@ -20,6 +20,7 @@ import { Loading } from "../../components/Loading"
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+    //Click anywhere will navigate back to the posts component and clear comments in the store.
     function handleOnClick () {
         dispatch(clearComments())
         navigate(-1)

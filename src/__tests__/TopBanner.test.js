@@ -1,20 +1,26 @@
 import { TopBanner } from "../components/TopBanner";
 import App from '../app/App';
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { render, screen, cleanup, fireEvent, waitFor} from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { Provider } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import store from '../app/store'
-import { lightTheme } from "../components/themes";
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Provider } from "react-redux";
+
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import {rest} from 'msw'
 import {setupServer} from 'msw/node'
 
+//Setup mock server response
+
 const mockedResponsePosts = require('./mock/mockResponsePosts.json')
 
 const server = setupServer(
+  //Will match any of the below REST fetch
+  //https://www.reddit.com/rising/
+  //https://www.reddit.com/new/
+  //https://www.reddit.com/top/
+  //https://www.reddit.com/r/popular.json?geo_filter=GLOBAL'
+  //https://www.reddit.com/search/
   rest.get(/\/www\.reddit\.com\/(rising|new|top|r\/popular|search)/, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockedResponsePosts))
   })
@@ -35,6 +41,7 @@ describe('Top banner functionality',() => {
         </Router>
       </Provider>
       );
+
     const linkElement = screen.getByText('Search');
     expect(linkElement).toBeInTheDocument();
   });
@@ -63,16 +70,18 @@ describe('Top banner functionality',() => {
         <App />
     </Provider>
     )
-
+    
+    //Type 'test' in the search box
     const inputbox = screen.getByPlaceholderText('search')
     userEvent.type(inputbox, 'test')
 
+    //Click on the 'search' button
     const linkElement = screen.getByText('Search');
     userEvent.click(linkElement)
 
+    //Check that the title of the first post contains the seach term 'test'
     const firstTitle = await screen.findByTestId('post0',undefined, {timeout: 5000})
     expect(firstTitle).toBeInTheDocument()
-
     expect(firstTitle).toHaveTextContent(/This JSON has been mocked/i)
   
   })
@@ -86,24 +95,26 @@ describe('Top banner functionality',() => {
       </Provider>
     )
   
-    //grab the theme button
+    //Check that the theme button is displayed, regardless whether it show 'light' or 'dark'
     let themeButton = screen.queryByText('dark')
     if (themeButton===null) {
       themeButton = screen.queryByText('light')
     }
-    
     expect(themeButton).toBeInTheDocument()
     
+    //Save the background and font color of the theme button
     const desiredBackground = themeButton.style.backgroundColor
     const desiredColor = themeButton.style.color
     
+    //Toggle theme button
     userEvent.click(themeButton)
     
+    //Wait for page to reload
     const post = await screen.findByTestId('post0',undefined,{timeout: 5000})
   
+    //Check that the theme of the first post is the same as the theme button before clicking it.
     const appliedBackground = post.style.backgroundColor
     const appliedColor = post.style.color
-  
     expect(appliedBackground).toBe(desiredBackground)
     expect(appliedColor).toBe(desiredColor)
   

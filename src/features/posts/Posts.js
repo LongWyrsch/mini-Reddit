@@ -10,11 +10,8 @@ export const Posts = () => {
     // console.log('Component Posts starting to render')
 
     const theme = useSelector(selectTheme)
-    // console.log('posts updated')
     const posts = useSelector(selectPosts) 
-    // console.log('loading state updated')
     const postsAreLoaing = useSelector(isLoadingPosts)
-
 
     return (
         <div className='Posts-component' >

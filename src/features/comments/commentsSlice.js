@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
+//Middleware fetches JSON (comments) for the post before feeding it to the slice
 export const getComments = createAsyncThunk(
     'comments/getComments',
     async (permalink, thunkAPI) => {
@@ -18,6 +19,7 @@ const commentsSlice = createSlice({
         hasError: false
     },
     reducers: {
+        //When exiting a postDetails view (by clicking anywhere), the comments are cleared from the store to avoid showing them the next time an other postDetails is shown.
         clearComments: (state, action) => {
             state.comments = []
         }
@@ -28,7 +30,8 @@ const commentsSlice = createSlice({
             state.hasError = false;
         },
         [getComments.fulfilled]: (state, action) => {
-            state.comments = []
+            state.isLoading = false;
+            state.hasError = false;
             action.payload[1].data.children.forEach((comment, index)=>{
                 state.comments.push(
                     {
@@ -39,8 +42,6 @@ const commentsSlice = createSlice({
                 )
                 
             })
-            state.isLoading = false;
-            state.hasError = false;
         },
         [getComments.rejected]: (state, action) => {
             state.isLoading = false;
@@ -51,5 +52,5 @@ const commentsSlice = createSlice({
 
 export default commentsSlice.reducer
 export const selectComments = (state) => state.comments.comments
-export const {clearComments} = commentsSlice.actions
 export const isLoadingComments = (state) => state.comments.isLoading
+export const {clearComments} = commentsSlice.actions

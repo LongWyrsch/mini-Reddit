@@ -1,9 +1,5 @@
 import './App.css';
-import {
-BrowserRouter as Router,
-Routes,
-Route
-} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import { Filters } from '../components/Filters';
 import { Posts } from '../features/posts/Posts';
 import {TopBanner} from '../components/TopBanner'
@@ -26,7 +22,7 @@ function App() {
           <Route path='/top' element={<Posts/>}/>
           <Route path='/rising' element={<Posts/>}/>
           <Route path='/search' element={<Posts/>}/>
-          <Route path='/:firstFilter/*' element={<PostDetails/>} />
+          <Route path='/:firstFilter/:secondFilter' element={<PostDetails/>} />
           <Route path='*' element={<NoMatch/>} />
         </Routes>
       </Router>

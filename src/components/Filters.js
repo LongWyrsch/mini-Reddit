@@ -13,24 +13,28 @@ export const Filters = () => {
     const navigate = useNavigate()
     const theme = useSelector(selectTheme)
     const pathname = useLocation().pathname
+
+    //If a term is searched, SearchTerm will contain that search term
     const [searchParams] = useSearchParams();
     const searchTerm = searchParams.get('t');
 
-
+    //When first loading the website, it will add /hot/ and load posts from the hot section
     useEffect(() => {
         if (pathname === '/') {navigate('/hot/')}
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     
-    const[topFilter, setTopFilter] = useState('Today')
-    const timeframes = ['Now','Today','This Week', 'This Month', 'This Year', 'All Time']
-
+    //Style the filter button so that they are grey. If selected, they turn blue.
     const style = ({ isActive }) => ({
         filter: isActive ? 'grayscale(0%)' : 'grayscale(100%)',
         backgroundColor: theme==='light'?'#F6F7F8':'#1A1A1A',
         color: theme==='light'?'black':'white'
     });
+
+    //When 'Top' is selected and a timeframe is chosen, the app loads posts related to the timeframe selected. A URL as built to target the chosen timeframe.
+    const[topFilter, setTopFilter] = useState('Today')
+    const timeframes = ['Now','Today','This Week', 'This Month', 'This Year', 'All Time']
 
     function handleChange (event) {
         setTopFilter(event.target.value)
@@ -61,6 +65,7 @@ export const Filters = () => {
         navigate(newPath)
     }
 
+    //Depending on the selected filter, the below function returns the corresponding URL to be dispatched (see below).
     function getJsonUrl (firstFilter, secondFilter) {
         firstFilter = firstFilter.replace('/','')
         // console.log('getJsonUrl function called with: ' + firstFilter + ' and ' + secondFilter)
@@ -75,7 +80,7 @@ export const Filters = () => {
 
     //The dispactch is wrapped in this useEffect to avoid Posts rendering at the same time as this component. UseEffect delays the dispatch until this Filter component is done rendering.
     useEffect(() => {
-        //Sends action to getPosts whenever url matches HOT, NEW or RISING, with no second parameter.
+        //Sends action to getPosts whenever url matches HOT, NEW or RISING, with no second parameter. Search terms are handeled by the TopBanner component.
         let secondParameter = pathname.substring(pathname.indexOf('/',1)+1,pathname.length)
         if (pathname.includes('search') === false){
             if (secondParameter.includes('?t=') || secondParameter === '' || secondParameter === '/') {
@@ -92,19 +97,6 @@ export const Filters = () => {
                         <img src={require('../images/hot2.png')} className='filter' alt="hotFilter"/>
                     </div>
                 </NavLink>
-                {/* Reddit's API doesn't return the right JSON when filtering the 'hot' section with geo_filter. Instead it returns post for 'global' */}
-                {/* {pathname.includes('hot') &&
-                    <div className='filter-button hot'  >
-                            <select value={secondFilter} onChange={handleChange}>            
-                                {regions.map((region, index) => {
-		                            return (
-			                            <option key={index} value={region}>{region}</option>
-		                            )
-                                })}
-                                
-                            </select>
-                    </div>
-                } */}
                 <NavLink to={'/new/'} style={style} data-testid='newLink'>
                     <div className='filter-button new'  >
                         <img src={require('../images/new2.png')} className='filter' alt="newFilter" />
